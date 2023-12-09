@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../models/salesmen.dart';
+import '../views/task_status_screen.dart';
 
 // Controller for the DashboardScreen
 class DashboardController extends GetxController with SingleGetTickerProviderMixin {
@@ -28,5 +29,8 @@ class DashboardController extends GetxController with SingleGetTickerProviderMix
   }
   void changeTab(int index) {
     tabController.animateTo(index);
+  }
+  void navigateToTaskStatus() {
+    Get.to(() => TaskStatus());
   }
 }

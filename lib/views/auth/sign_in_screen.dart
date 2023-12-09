@@ -1,4 +1,3 @@
-// lib/views/auth/sign_in_screen.dart
 import 'package:admin_management/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

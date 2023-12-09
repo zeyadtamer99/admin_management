@@ -1,6 +1,7 @@
-import 'package:admin_management/views/DashBoardScreen.dart';
+import 'package:admin_management/views/dashboard_screen.dart';
 import 'package:admin_management/views/auth/sign_in_screen.dart';
 import 'package:admin_management/views/new_sales_agent_screen.dart';
+import 'package:admin_management/views/profile_screen.dart';
 import 'package:admin_management/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,7 +21,7 @@ class HomeScreen extends StatelessWidget {
           case 1:
             return NewSalesAgentScreen();
           case 2:
-            return SignInScreen();
+            return ProfileScreen();
           default:
             return Container();
         }

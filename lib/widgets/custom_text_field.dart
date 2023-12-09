@@ -1,3 +1,4 @@
+import 'package:admin_management/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
@@ -6,11 +7,13 @@ import 'package:get/get.dart';
 class CustomTextField extends StatelessWidget {
   final String title;
   final String hintText;
-  final IconData? endIcon; // Nullable endIcon parameter
+  final IconData? endIcon;
   final Function(String)? onChanged;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
-  final Rx<String?>? errorText; // Observable error text
+  final Rx<String?>? errorText;
+  final double? width;
+  final double? height;
 
   CustomTextField({
     required this.title,
@@ -19,7 +22,9 @@ class CustomTextField extends StatelessWidget {
     this.onChanged,
     this.validator,
     this.controller,
-    this.errorText, // Now required
+    this.errorText,
+    this.width,
+    this.height,
   });
 
   @override
@@ -29,20 +34,26 @@ class CustomTextField extends StatelessWidget {
       children: [
         Text(
           title,
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: AppFontSizes.small, color: Colors.grey),
         ),
         SizedBox(height: 8),
-        Obx(() => TextFormField( // Wrapped with Obx for reactivity
-          controller: controller,
-          decoration: InputDecoration(
-            hintText: hintText,
-            border: OutlineInputBorder(),
-            suffixIcon: endIcon != null ? Icon(endIcon) : null,
-            errorText: errorText?.value, // Display the error text
+        Container(
+          width: width, // Use the width parameter
+          height: height, // Use the height parameter
+          child: TextFormField(
+            controller: controller,
+            decoration: InputDecoration(
+              hintText: hintText,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              suffixIcon: endIcon != null ? Icon(endIcon) : null,
+              errorText: errorText?.value,
+            ),
+            onChanged: onChanged,
+            validator: validator,
           ),
-          onChanged: onChanged,
-          validator: validator,
-        )),
+        ),
       ],
     );
   }

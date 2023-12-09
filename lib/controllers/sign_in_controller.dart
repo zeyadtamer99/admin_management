@@ -10,7 +10,6 @@ class SignInController extends GetxController {
   var usernameErrorText = Rx<String?>(null);
   var passwordErrorText = Rx<String?>(null);
 
-  // Validation logic for the form fields
   String? validateUsername(String? value) {
     if (value == null || value.isEmpty) return 'Username cannot be empty';
     return null;
@@ -30,11 +29,11 @@ class SignInController extends GetxController {
     // Validate username and password
     bool isValid = true;
     if (username.value.isEmpty) {
-      usernameErrorText.value = 'Username cannot be empty';
+      usernameErrorText.value = 'Please enter a valid username';
       isValid = false;
     }
     if (password.value.isEmpty) {
-      passwordErrorText.value = 'Password cannot be empty';
+      passwordErrorText.value = 'Please enter a valid password';
       isValid = false;
     }
 

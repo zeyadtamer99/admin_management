@@ -12,6 +12,6 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(title: 'Sales Management', home: SignInScreen());
+    return GetMaterialApp(title: 'Sales Management', home: HomeScreen());
   }
 }
