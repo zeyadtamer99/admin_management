@@ -1,5 +1,3 @@
-// Define all your app's constants here
-
 import 'package:flutter/material.dart';
 
 class AppColors {
