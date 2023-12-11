@@ -54,7 +54,7 @@ class AddTaskController extends GetxController {
   }
 
   void onAppBarLeadingPressed() {
-    // Add your logic for when the leading icon of the app bar is pressed
+    Get.back();
   }
 
   void onSaveButtonPressed() {

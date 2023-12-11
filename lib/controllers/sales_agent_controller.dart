@@ -70,9 +70,10 @@ class SalesAgentController extends GetxController {
   }
 
   void onLeadingIconPressed(){
-    Get.to(() => HomeScreen());
+    Get.back();
   }
   void onSave(){
-    print("Things to do to save task and push to api");}
+    print("Things to do to save task and push to api");
+  }
   
 }

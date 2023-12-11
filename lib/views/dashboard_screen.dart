@@ -18,7 +18,7 @@ class DashboardScreen extends StatelessWidget {
       5,
           (int index) => _SalesData(
         'Month ${index + 1}',
-        random.nextInt(100).toDouble(), // Generates a random number between 0 and 99
+        random.nextInt(100).toDouble(),
       ),
     );
   }
@@ -41,26 +41,30 @@ class DashboardScreen extends StatelessWidget {
                 height: 32,
               ),
               SizedBox(
-                height: 250, // adjust this value as needed
+                height: 250,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 10, // replace with your actual list length
+                  itemCount: 10,
                   itemBuilder: (context, index) {
                     return CustomAnalyticsCard(
-                      title: 'Card $index',
+                      title: 'Analytics',
                       child: SfSparkLineChart.custom(
                         trackball: SparkChartTrackball(
                             activationMode: SparkChartActivationMode.tap),
                         marker: SparkChartMarker(
-                            borderColor: Colors.lightBlueAccent,
+
+                            borderColor: Colors.white,
                             displayMode: SparkChartMarkerDisplayMode.all),
                         labelDisplayMode: SparkChartLabelDisplayMode.all,
                         xValueMapper: (int index) => data[index].year,
                         yValueMapper: (int index) => data[index].sales,
-                        color: Colors.white,
+                        color: AppColors.primaryColor,
                         dataCount: 5,
+                      axisLineColor: Colors.white,
+                        highPointColor: Colors.white,
+                        labelStyle: TextStyle(fontSize: 14,color: Colors.white),
                       ),
-                      backgroundColor: AppColors.primaryColor,
+                      backgroundColor: Colors.black,
                     );
                   },
                 ),

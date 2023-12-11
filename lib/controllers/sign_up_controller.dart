@@ -58,13 +58,11 @@ class SignUpController extends GetxController {
   }
 
   void onAlreadyHaveAccountPressed(){
-
     Get.to(() =>
-        SignInScreen()); // Replace SignUpScreen with your actual sign-up page widget
+        SignInScreen());
   }
   void onLeadingIconPressed(){
-    Get.to(() =>
-        SignInScreen()); // Replace SignUpScreen with your actual sign-up page widget
+   Get.back();
   }
 }
 

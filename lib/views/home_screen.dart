@@ -5,6 +5,7 @@ import 'package:admin_management/views/profile_screen.dart';
 import 'package:admin_management/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../constants/constants.dart';
 import '../controllers/home_controller.dart';
 import '../widgets/custom_text_field.dart';
 
@@ -19,32 +20,60 @@ class HomeScreen extends StatelessWidget {
           case 0:
             return DashboardScreen();
           case 1:
-            return NewSalesAgentScreen();
+            return Container(
+              child: Text("Search"),
+            );
           case 2:
-            return ProfileScreen();
+            return NewSalesAgentScreen();
+          case 3:
+            return Container(
+              child: Text("chat"),
+            );
           default:
-            return Container();
+            return ProfileScreen();
         }
       }),
       bottomNavigationBar: Obx(() => BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add),
-            label: 'New Agent',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-        currentIndex: homeController.selectedIndex.value,
-        onTap: homeController.changePage,
-      )),
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home_filled),
+                label: '',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.search),
+                label: '',
+              ),
+              BottomNavigationBarItem(
+                icon: Material(
+                  elevation: 5.0, // Adjust this value as needed
+                  shape: CircleBorder(),
+                  color: Colors.transparent,
+                  child: CircleAvatar(
+                    radius: 24,
+                    backgroundColor: AppColors.primaryColor,
+                    child: Icon(Icons.add, color: Colors.white),
+                  ),
+                ),
+                label: '',
+              ),
+
+              BottomNavigationBarItem(
+                icon: Icon(Icons.chat_bubble_outline_rounded),
+                label: '',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person),
+                label: '',
+              ),
+            ],
+          elevation: 0.0,
+          currentIndex: homeController.selectedIndex.value,
+          onTap: homeController.changePage,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          unselectedItemColor: Colors.black54,
+          selectedItemColor: AppColors.primaryColor,
+          )),
     );
   }
 }
-
