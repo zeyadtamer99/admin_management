@@ -1,3 +1,4 @@
+import 'package:admin_management/views/home_screen.dart';
 import 'package:get/get.dart';
 
 import '../views/auth/sign_in_screen.dart';
@@ -29,7 +30,6 @@ class SignUpController extends GetxController {
 
   // Logic to handle sign in
   void onSignUpPressed() {
-    // Reset error messages
     nameErrorText.value = null;
     emailErrorText.value = null;
     passwordErrorText.value = null;
@@ -49,12 +49,10 @@ class SignUpController extends GetxController {
       isValid = false;
     }
 
-    // Proceed with sign-in if valid
     if (isValid) {
-      // Add your sign-in logic here
+      Get.to(()=>HomeScreen());
       print('Sign-in successful');
     } else {
-      // Handle validation errors
       print('Sign-in failed due to validation errors');
     }
   }
