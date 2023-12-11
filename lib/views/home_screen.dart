@@ -1,3 +1,4 @@
+import 'package:admin_management/views/chat_screen.dart';
 import 'package:admin_management/views/dashboard_screen.dart';
 import 'package:admin_management/views/auth/sign_in_screen.dart';
 import 'package:admin_management/views/new_sales_agent_screen.dart';
@@ -26,46 +27,44 @@ class HomeScreen extends StatelessWidget {
           case 2:
             return NewSalesAgentScreen();
           case 3:
-            return Container(
-              child: Text("chat"),
-            );
+            return ChatPage();
           default:
             return ProfileScreen();
         }
       }),
-      bottomNavigationBar: Obx(() => BottomNavigationBar(
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home_filled),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.search),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: Material(
-                  elevation: 5.0, // Adjust this value as needed
-                  shape: CircleBorder(),
-                  color: Colors.transparent,
-                  child: CircleAvatar(
-                    radius: 24,
-                    backgroundColor: AppColors.primaryColor,
-                    child: Icon(Icons.add, color: Colors.white),
-                  ),
+      bottomNavigationBar: Obx(
+        () => BottomNavigationBar(
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home_filled),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.search),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Material(
+                elevation: 5.0,
+                shape: CircleBorder(),
+                color: Colors.transparent,
+                child: CircleAvatar(
+                  radius: 24,
+                  backgroundColor: AppColors.primaryColor,
+                  child: Icon(Icons.add, color: Colors.white),
                 ),
-                label: '',
               ),
-
-              BottomNavigationBarItem(
-                icon: Icon(Icons.chat_bubble_outline_rounded),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: '',
-              ),
-            ],
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.chat_bubble_outline_rounded),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: '',
+            ),
+          ],
           elevation: 0.0,
           currentIndex: homeController.selectedIndex.value,
           onTap: homeController.changePage,
@@ -73,7 +72,8 @@ class HomeScreen extends StatelessWidget {
           showUnselectedLabels: false,
           unselectedItemColor: Colors.black54,
           selectedItemColor: AppColors.primaryColor,
-          )),
+        ),
+      ),
     );
   }
 }

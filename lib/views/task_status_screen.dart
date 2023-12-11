@@ -65,7 +65,7 @@ class TaskStatus extends StatelessWidget {
             ]
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround, // Spread the circles evenly
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children:[
               Row(
                 children: [ Container(
@@ -73,10 +73,10 @@ class TaskStatus extends StatelessWidget {
                   height: 20.0,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: AppColors.lightGreyColor, // Use the color from circleColors
+                    color: AppColors.lightGreyColor,
                   ),
                 ),
-                  SizedBox(width: 8.0), // Add some space between the circle and text
+                  SizedBox(width: 8.0),
                   Text("To Do"),],),
               Row(
                 children: [ Container(
