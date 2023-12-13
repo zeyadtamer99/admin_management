@@ -14,7 +14,6 @@ class NewSalesAgentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
@@ -107,7 +106,13 @@ class NewSalesAgentScreen extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  CustomButton(text: "Save", backgroundColor: AppColors.primaryColor, fontSize: AppFontSizes.medium, width: screenWidth*0.7, height: screenHeight*0.06, onPressed: _controller.onSave),
+                  CustomButton(
+                      text: "Save",
+                      backgroundColor: AppColors.primaryColor,
+                      fontSize: AppFontSizes.medium,
+                      width: screenWidth * 0.7,
+                      height: screenHeight * 0.06,
+                      onPressed: _controller.onSave),
                 ],
               ),
             ),

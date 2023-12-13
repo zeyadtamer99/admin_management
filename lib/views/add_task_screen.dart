@@ -1,5 +1,5 @@
 import 'package:admin_management/constants/constants.dart';
-import 'package:admin_management/widgets/empty_custom_button.dart';
+import 'package:admin_management/widgets/advanced_custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -73,18 +73,26 @@ class AddTask extends StatelessWidget {
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: List.generate(3, (index) => GetBuilder<AddTaskController>(
-                        builder: (controller) {
-                          return TitleCustomButton(
-                            text: ["On Going", "Completed", "To Do"][index],
-                            onPressed: () => controller.updateSelectedIndex(index),
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            height: MediaQuery.of(context).size.height * 0.065,
-                            textSize: 14,
-                            isSelected: controller.selectedIndex.value == index,
-                          );
-                        },
-                      )),
+                      children: List.generate(
+                          3,
+                          (index) => GetBuilder<AddTaskController>(
+                                builder: (controller) {
+                                  return Obx(() => AdvancedCustomButton(
+                                        text: [
+                                          "On Going",
+                                          "Completed",
+                                          "To Do"
+                                        ][index],
+                                        onPressed: () => controller
+                                            .updateSelectedIndex(index),
+                                        width: screenWidth*0.3,
+                                        textSize: AppFontSizes.verySmall,
+                                        isSelected:
+                                            controller.selectedIndex.value ==
+                                                index,
+                                      ));
+                                },
+                              )),
                     )
                   ],
                 ),

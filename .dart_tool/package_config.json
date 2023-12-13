@@ -272,6 +272,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "searchbar_animation",
+      "rootUri": "file:///C:/Users/20102/AppData/Local/Pub/Cache/hosted/pub.dev/searchbar_animation-0.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "simple_circular_progress_bar",
       "rootUri": "file:///C:/Users/20102/AppData/Local/Pub/Cache/hosted/pub.dev/simple_circular_progress_bar-1.0.2",
       "packageUri": "lib/",
@@ -434,7 +440,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2023-12-11T16:11:00.913520Z",
+  "generated": "2023-12-13T03:55:02.810075Z",
   "generator": "pub",
   "generatorVersion": "3.1.5"
 }

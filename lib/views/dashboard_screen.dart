@@ -16,12 +16,13 @@ class DashboardScreen extends StatelessWidget {
   List<_SalesData> generateRandomData() {
     return List<_SalesData>.generate(
       5,
-          (int index) => _SalesData(
+      (int index) => _SalesData(
         'Month ${index + 1}',
         random.nextInt(100).toDouble(),
       ),
     );
   }
+
   final DashboardController controller = Get.put(DashboardController());
   @override
   Widget build(BuildContext context) {
@@ -52,7 +53,6 @@ class DashboardScreen extends StatelessWidget {
                         trackball: SparkChartTrackball(
                             activationMode: SparkChartActivationMode.tap),
                         marker: SparkChartMarker(
-
                             borderColor: Colors.white,
                             displayMode: SparkChartMarkerDisplayMode.all),
                         labelDisplayMode: SparkChartLabelDisplayMode.all,
@@ -60,9 +60,10 @@ class DashboardScreen extends StatelessWidget {
                         yValueMapper: (int index) => data[index].sales,
                         color: AppColors.primaryColor,
                         dataCount: 5,
-                      axisLineColor: Colors.white,
+                        axisLineColor: Colors.white,
                         highPointColor: Colors.white,
-                        labelStyle: TextStyle(fontSize: 14,color: Colors.white),
+                        labelStyle:
+                            TextStyle(fontSize: 14, color: Colors.white),
                       ),
                       backgroundColor: Colors.black,
                     );
@@ -104,7 +105,8 @@ class DashboardScreen extends StatelessWidget {
                           return SalesmanCard(
                             name: controller.salesmen[index].name,
                             calls: controller.salesmen[index].calls,
-                            percentage: controller.salesmen[index].percentage, onTap: controller.navigateToTaskStatus,
+                            percentage: controller.salesmen[index].percentage,
+                            onTap: controller.navigateToTargetStatus,
                           );
                         },
                       ),

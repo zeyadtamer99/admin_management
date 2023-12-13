@@ -3,6 +3,7 @@ import 'package:admin_management/views/dashboard_screen.dart';
 import 'package:admin_management/views/auth/sign_in_screen.dart';
 import 'package:admin_management/views/new_sales_agent_screen.dart';
 import 'package:admin_management/views/profile_screen.dart';
+import 'package:admin_management/views/search_screen.dart';
 import 'package:admin_management/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,9 +22,7 @@ class HomeScreen extends StatelessWidget {
           case 0:
             return DashboardScreen();
           case 1:
-            return Container(
-              child: Text("Search"),
-            );
+            return SearchScreen();
           case 2:
             return NewSalesAgentScreen();
           case 3:
@@ -77,4 +76,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-

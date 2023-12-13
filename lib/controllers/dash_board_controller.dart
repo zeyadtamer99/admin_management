@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../models/salesmen.dart';
-import '../views/task_status_screen.dart';
+import '../views/target_status_screen.dart';
 
-// Controller for the DashboardScreen
 class DashboardController extends GetxController with SingleGetTickerProviderMixin {
   late TabController tabController;
   List<Salesman> salesmen = [
@@ -13,7 +12,6 @@ class DashboardController extends GetxController with SingleGetTickerProviderMix
     Salesman(name: 'Wael Gomaa', calls: 33, percentage: 30.0),
     Salesman(name: 'Essam El-Hadary', calls: 44, percentage: 80.0),
     Salesman(name: 'Ahmed Fathi', calls: 55, percentage: 10.0),
-    // Add more salesmen here
   ];
 
   @override
@@ -30,7 +28,7 @@ class DashboardController extends GetxController with SingleGetTickerProviderMix
   void changeTab(int index) {
     tabController.animateTo(index);
   }
-  void navigateToTaskStatus() {
-    Get.to(() => TaskStatus());
+  void navigateToTargetStatus() {
+    Get.to(() => TargetStatus());
   }
 }

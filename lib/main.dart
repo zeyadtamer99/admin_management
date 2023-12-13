@@ -1,4 +1,4 @@
-import 'package:admin_management/views/task_status_screen.dart';
+import 'package:admin_management/views/target_status_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'views/auth/sign_in_screen.dart';

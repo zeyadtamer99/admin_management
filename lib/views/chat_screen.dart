@@ -11,15 +11,14 @@ class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-        title: 'Chat',
-        leadingIcon: Icons.arrow_back_ios_rounded,
-      ),
-      body: Chat(
-        messages: controller.messages,
-        onSendPressed: controller.handleSendPressed,
-        user: controller.user,
-      ),
-    );
+        appBar: CustomAppBar(
+          title: 'Chat',
+          leadingIcon: Icons.arrow_back_ios_rounded,
+        ),
+        body: Chat(
+          messages: controller.messages,
+          onSendPressed: controller.handleSendPressed,
+          user: controller.user,
+        ));
   }
 }

@@ -1,13 +1,11 @@
 import 'package:admin_management/widgets/CustomColumnWidget.dart';
-import 'package:admin_management/widgets/empty_custom_button.dart';
+import 'package:admin_management/widgets/advanced_custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../constants/constants.dart';
 import '../controllers/profile_controller.dart';
 import '../widgets/custom_appbar.dart';
-import '../widgets/custom_button.dart';
-import '../widgets/customprogressbar.dart';
 
 class ProfileScreen extends StatelessWidget {
   final ProfileController _controller = Get.put(ProfileController());
@@ -43,7 +41,7 @@ class ProfileScreen extends StatelessWidget {
               SizedBox(
                 height: 24,
               ),
-              TitleCustomButton(
+              AdvancedCustomButton(
                 text: "Edit",
                 onPressed: () {},
                 borderColor: AppColors.primaryColor,
@@ -51,9 +49,11 @@ class ProfileScreen extends StatelessWidget {
                 height: screenHeight * 0.04,
                 textSize: AppFontSizes.small,
               ),
-              SizedBox(height: 34,),
               SizedBox(
-                height: screenHeight*0.1,
+                height: 34,
+              ),
+              SizedBox(
+                height: screenHeight * 0.1,
                 child: Center(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -67,9 +67,13 @@ class ProfileScreen extends StatelessWidget {
                                 fontSize: AppFontSizes.medium,
                                 fontWeight: FontWeight.bold),
                             descriptionStyle: TextStyle(
-                                fontSize: AppFontSizes.small, color: Colors.grey)),
+                                fontSize: AppFontSizes.small,
+                                color: Colors.grey)),
                       ),
-                      const VerticalDivider(thickness: 2,color: Colors.grey,),
+                      const VerticalDivider(
+                        thickness: 2,
+                        color: Colors.grey,
+                      ),
                       Expanded(
                         child: CustomColumnWidget(
                             icon: Icons.check_circle_outlined,
@@ -79,7 +83,8 @@ class ProfileScreen extends StatelessWidget {
                                 fontSize: AppFontSizes.medium,
                                 fontWeight: FontWeight.bold),
                             descriptionStyle: TextStyle(
-                                fontSize: AppFontSizes.small, color: Colors.grey)),
+                                fontSize: AppFontSizes.small,
+                                color: Colors.grey)),
                       ),
                     ],
                   ),
@@ -88,37 +93,38 @@ class ProfileScreen extends StatelessWidget {
               SizedBox(
                 height: 24,
               ),
-              TitleCustomButton(
+              AdvancedCustomButton(
                 text: "Teams",
                 onPressed: () {},
                 borderColor: AppColors.lightGreyColor,
                 width: screenWidth * 0.9,
                 height: screenHeight * 0.07,
                 textSize: AppFontSizes.medium,
-                icon: Icons.arrow_forward_ios_rounded,
+                endingWidget: Icon(Icons.arrow_forward_ios_rounded),
               ),
               SizedBox(
                 height: 12,
               ),
-              TitleCustomButton(
+              AdvancedCustomButton(
                   text: "Targets",
                   onPressed: () {},
                   borderColor: AppColors.lightGreyColor,
                   width: screenWidth * 0.9,
                   height: screenHeight * 0.07,
                   textSize: AppFontSizes.medium,
-                  icon: Icons.arrow_forward_ios_rounded),
+                  endingWidget: Icon(Icons.arrow_forward_ios_rounded),
+              ),
               SizedBox(
                 height: 12,
               ),
-              TitleCustomButton(
+              AdvancedCustomButton(
                   text: "Settings",
                   onPressed: () {},
                   borderColor: AppColors.lightGreyColor,
                   width: screenWidth * 0.9,
                   height: screenHeight * 0.07,
                   textSize: AppFontSizes.medium,
-                  icon: Icons.arrow_forward_ios_rounded),
+                  endingWidget: Icon(Icons.arrow_forward_ios_rounded),),
             ],
           ),
         ),
