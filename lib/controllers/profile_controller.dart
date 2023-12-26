@@ -1,16 +1,59 @@
-import 'package:get/get.dart';
+import 'dart:convert';
 
-import '../views/home_screen.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+
+import '../models/adminInfo.dart';
+import 'package:http/http.dart' as http;
+
+import '../views/edit_admin_screen.dart';
 
 class ProfileController extends GetxController {
-  final name = 'John Doe'.obs;
-  final position = 'Software Developer'.obs;
+  var adminInfo = AdminInfo(
+    id: 0,
+    name: '',
+    email: '',
+    phoneNumber: '',
+    target: '',
+    current: '',
+    role: '',
+    status: '',
+    team: null,
+  ).obs;
 
-  void editProfile() {
-    // Add your logic for editing the profile here
+  @override
+  void onInit() {
+    super.onInit();
+    fetchAdminInfo();
   }
 
-  void navigateToHome() {
-    Get.to(() => HomeScreen());
+  Future<void> fetchAdminInfo() async {
+    Uri baseUrl = Uri.parse("https://dgcuae.com/api/prototype/user/profile");
+
+    final storage = GetStorage();
+    String? token = storage.read('token');
+
+    var res = await http.get(
+      baseUrl,
+      headers: {
+        'Authorization': 'Bearer $token',
+        "Accept" : "application/json",
+      },
+    );
+
+    var response = jsonDecode(res.body);
+    if (response['status'] == 'successful') {
+      adminInfo.value = AdminInfo.fromJson(response['data']);
+    }
+  }
+
+
+  void editProfile() {
+    Get.to(() => EditAdminPage(adminInfo: adminInfo.value));
+
+  }
+
+  void onLeadingPressed() {
+    Get.back();
   }
 }

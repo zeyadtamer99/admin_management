@@ -1,11 +1,19 @@
-import 'package:admin_management/views/home_screen.dart';
-import 'package:get/get.dart';
+import 'dart:convert';
 
-import '../views/auth/sign_up_screen.dart';
+import 'package:admin_management/views/home_screen.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
+import 'package:admin_management/models/adminInfo.dart';
+import 'package:get_storage/get_storage.dart';
+
+import 'package:http/http.dart' as http;
 
 class SignInController extends GetxController {
   var username = ''.obs;
   var password = ''.obs;
+
+  TextEditingController mailCtrl = TextEditingController();
+  TextEditingController passwordCtrl = TextEditingController();
 
   var usernameErrorText = Rx<String?>(null);
   var passwordErrorText = Rx<String?>(null);
@@ -20,13 +28,24 @@ class SignInController extends GetxController {
     return null;
   }
 
-  // Logic to handle sign in
-  void onSignInPressed() {
-    // Reset error messages
+  @override
+  void onInit() {
+    super.onInit();
+    checkToken();
+  }
+
+  Future<void> checkToken() async {
+    final storage = GetStorage();
+    var response = storage.read('response');
+    if (response != null) {
+      Get.offAll(() => HomeScreen());
+    }
+  }
+
+  Future<void> onSignInPressed() async {
     usernameErrorText.value = null;
     passwordErrorText.value = null;
 
-    // Validate username and password
     bool isValid = true;
     if (username.value.isEmpty) {
       usernameErrorText.value = 'Please enter a valid username';
@@ -37,25 +56,34 @@ class SignInController extends GetxController {
       isValid = false;
     }
 
-    // Proceed with sign-in if valid
     if (isValid) {
-      Get.to(() => HomeScreen());
+      await signIn();
       print('Sign-in successful');
     } else {
-      // Handle validation errors
       print('Sign-in failed due to validation errors');
     }
   }
 
-  // Logic for forgot password
-  void onForgotPasswordPressed() {
-    // Add your forgot password logic here
-    print('Forgot password pressed');
+  signIn() async {
+    Uri baseUrl = Uri.parse("https://dgcuae.com/api/prototype/user/login");
+
+    var res = await http.post(baseUrl, body: {
+      "email": mailCtrl.text,
+      "password": passwordCtrl.text,
+    });
+
+    var response = jsonDecode(res.body);
+    if (response['status'] == 'successful') {
+      final storage = GetStorage();
+
+      await storage.write('token', response['data']['token']);
+      Get.offAll(() => HomeScreen());
+    }
+
+    print(res.body);
   }
 
-  // Logic for navigating to the registration page
-  void onNotRegisteredYetPressed() {
-    Get.to(() =>
-        SignUpScreen()); // Replace SignUpScreen with your actual sign-up page widget
+  void onForgotPasswordPressed() {
+    print('Forgot password pressed');
   }
 }

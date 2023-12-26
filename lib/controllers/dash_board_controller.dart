@@ -1,34 +1,48 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:http/http.dart' as http;
+
 
 import '../models/salesmen.dart';
+import '../views/all_salesmen_screen.dart';
 import '../views/target_status_screen.dart';
 
 class DashboardController extends GetxController with SingleGetTickerProviderMixin {
   late TabController tabController;
-  List<Salesman> salesmen = [
-    Salesman(name: 'John Doe', calls: 10, percentage: 50.0),
-    Salesman(name: 'Ahmed Hassan', calls: 22, percentage: 95.0),
-    Salesman(name: 'Wael Gomaa', calls: 33, percentage: 30.0),
-    Salesman(name: 'Essam El-Hadary', calls: 44, percentage: 80.0),
-    Salesman(name: 'Ahmed Fathi', calls: 55, percentage: 10.0),
-  ];
+  var salesmen = <Salesman>[].obs;
 
   @override
   void onInit() {
     super.onInit();
     tabController = TabController(length: 3, vsync: this);
+    fetchSalesmen();
   }
 
-  @override
-  void onClose() {
-    tabController.dispose();
-    super.onClose();
-  }
+  Future<void> fetchSalesmen() async {
+    Uri baseUrl = Uri.parse("https://dgcuae.com/api/prototype/users");
+
+    final storage = GetStorage();
+    String? token = storage.read('token');
+    var res = await http.get(baseUrl,headers: {
+      'Authorization': 'Bearer $token',
+      "Accept" : "application/json",
+    });
+
+    var response = jsonDecode(res.body);
+    if (response['status'] == 'successful') {
+      var newSalesmen = (response['data'] as List).map((i) => Salesman.fromJson(i)).toList();
+      salesmen.clear();
+      salesmen.addAll(newSalesmen); }}
   void changeTab(int index) {
     tabController.animateTo(index);
   }
   void navigateToTargetStatus() {
     Get.to(() => TargetStatus());
+  }
+  void navigateToSalesmen() {
+    Get.to(() => AllSalesmenPage(salesmen: salesmen));
   }
 }

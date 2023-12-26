@@ -21,70 +21,72 @@ class SignInScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Welcome Back',
-                style: TextStyle(fontSize: AppFontSizes.large, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 8),
-              SizedBox(
-                width: screenWidth * 0.65,
-                child: Text(
-                  'Please enter your email address and password for login',
-                  softWrap: true,
-                  style: TextStyle(fontSize: AppFontSizes.small, color: Colors.grey),
-                ),
-              ),
-              SizedBox(height: 36),
-              CustomTextField(
-                title: 'Username',
-                hintText: 'Enter your username',
-                onChanged: (value) => controller.username(value),
-                validator: (value) => controller.validateUsername(value), errorText: controller.usernameErrorText,
-              ),
-              SizedBox(height: 16),
-              CustomTextField(
-                title: 'Password',
-                hintText: 'Enter your password',
-                onChanged: (value) => controller.password(value),
-                validator: (value) => controller.validatePassword(value), errorText: controller.passwordErrorText,
-              ),
-              SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+          child: SingleChildScrollView(
+            child: Form(
+              key: Key("login_form_key"),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextButton(
-                    onPressed: controller.onForgotPasswordPressed,
+                  Text(
+                    'Welcome Back',
+                    style: TextStyle(fontSize: AppFontSizes.large, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 8),
+                  SizedBox(
+                    width: screenWidth * 0.65,
                     child: Text(
-                      'Forgot password?',
-                      style: TextStyle(color: Colors.black,fontSize: AppFontSizes.verySmall),
+                      'Please enter your email address and password for login',
+                      softWrap: true,
+                      style: TextStyle(fontSize: AppFontSizes.small, color: Colors.grey),
+                    ),
+                  ),
+                  SizedBox(height: 36),
+                  CustomTextField(
+                    title: 'Username',
+                    hintText: 'Enter your username',
+                    controller: controller.mailCtrl,
+                    onChanged: (value) => controller.username(value),
+                    validator: (value) => controller.validateUsername(value), errorText: controller.usernameErrorText,
+                  ),
+                  SizedBox(height: 16),
+                  CustomTextField(
+                    title: 'Password',
+                    controller: controller.passwordCtrl,
+                    hintText: 'Enter your password',
+                    onChanged: (value) => controller.password(value),
+                    validator: (value) {
+                      if(controller.passwordCtrl.text.isEmpty){
+                        return "Please enter a valid password";
+                      }
+                    },
+                  ),
+                  SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: controller.onForgotPasswordPressed,
+                        child: Text(
+                          'Forgot password?',
+                          style: TextStyle(color: Colors.black,fontSize: AppFontSizes.verySmall),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 24),
+                  Center(
+                    child: CustomButton(
+                      text: 'Sign In',
+                      backgroundColor: Colors.red,
+                      onPressed: controller.onSignInPressed,
+                      fontSize: AppFontSizes.small,
+                      width: screenWidth * 0.8,
+                      height: screenHeight * 0.065,
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 24),
-              Center(
-                child: CustomButton(
-                  text: 'Sign In',
-                  backgroundColor: Colors.red,
-                  onPressed: controller.onSignInPressed,
-                  fontSize: AppFontSizes.small,
-                  width: screenWidth * 0.8,
-                  height: screenHeight * 0.065,
-                ),
-              ),
-              Center(
-                child: TextButton(
-                  onPressed: controller.onNotRegisteredYetPressed,
-                  child: Text(
-                    'Not Register Yet?',
-                    style: TextStyle(color: Colors.grey,fontSize: AppFontSizes.verySmall),
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ),

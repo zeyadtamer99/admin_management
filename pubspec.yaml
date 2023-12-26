@@ -17,6 +17,8 @@ dependencies:
   flutter_chat_ui: ^1.6.10
   searchbar_animation: ^0.0.4
   uuid: ^4.2.1
+  http: any
+  get_storage: ^2.1.1
 
 
 

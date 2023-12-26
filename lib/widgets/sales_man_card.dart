@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 
 import '../constants/constants.dart';
-
+import '../models/salesmen.dart';
 class SalesmanCard extends StatelessWidget {
-  final String name;
-  final int calls;
-  final double percentage;
+  final Salesman salesman;
   final Color backgroundColor;
   final Function onTap;
 
   const SalesmanCard({
-    required this.name,
-    required this.calls,
-    required this.percentage,
+    required this.salesman,
     required this.onTap,
     this.backgroundColor = Colors.white,
   });
@@ -35,9 +31,17 @@ class SalesmanCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(name, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(salesman.name, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                        SizedBox(width: 6,),
+                        Text('(${salesman.role})', style: TextStyle(fontSize: 14, color: Colors.grey)),
+                      ],
+
+                    ),
                     SizedBox(height: 8),
-                    Text('Calls: $calls'),
+                    Text('Current: ${salesman.current}'),
                   ],
                 ),
               ),
@@ -49,12 +53,12 @@ class SalesmanCard extends StatelessWidget {
                     width: 45,
                     height: 45,
                     child: CircularProgressIndicator(
-                      value: percentage / 100,
+                      value: double.parse(salesman.target) / 100,
                       backgroundColor: Colors.grey,
                       valueColor: AlwaysStoppedAnimation<Color>(AppColors.primaryColor),
                     ),
                   ),
-                  Text('${(percentage).toStringAsFixed(0)}%'),
+                  Text('${salesman.target}%'),
                 ],
               ),
             ],

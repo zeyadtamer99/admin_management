@@ -6,8 +6,10 @@ import 'package:get/get.dart';
 import '../constants/constants.dart';
 import '../controllers/profile_controller.dart';
 import '../widgets/custom_appbar.dart';
+import 'edit_admin_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
+
   final ProfileController _controller = Get.put(ProfileController());
 
   @override
@@ -18,7 +20,7 @@ class ProfileScreen extends StatelessWidget {
       appBar: CustomAppBar(
         leadingIcon: Icons.arrow_back,
         title: 'Profile',
-        onLeadingPressed: _controller.navigateToHome,
+        onLeadingPressed: _controller.onLeadingPressed,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -26,27 +28,26 @@ class ProfileScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                _controller.name.value,
+              Obx(() => Text(
+                _controller.adminInfo.value.name,
                 style: TextStyle(
                     fontSize: AppFontSizes.large, fontWeight: FontWeight.bold),
-              ),
+              ),),
               SizedBox(
                 height: 8,
               ),
-              Text(
-                _controller.position.value,
-                style: TextStyle(fontSize: AppFontSizes.medium),
-              ),
+             Obx(() =>  Text(
+               _controller.adminInfo.value.role,
+               style: TextStyle(fontSize: AppFontSizes.medium),
+             ),),
               SizedBox(
                 height: 24,
               ),
               AdvancedCustomButton(
                 text: "Edit",
-                onPressed: () {},
+                onPressed:_controller.editProfile,
                 borderColor: AppColors.primaryColor,
                 width: screenWidth * 0.3,
-                height: screenHeight * 0.04,
                 textSize: AppFontSizes.small,
               ),
               SizedBox(
@@ -59,32 +60,32 @@ class ProfileScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Expanded(
-                        child: CustomColumnWidget(
+                        child: Obx(() => CustomColumnWidget(
                             icon: Icons.access_time_rounded,
-                            mainText: "5",
+                            mainText: _controller.adminInfo.value.current,
                             description: "On Going",
                             mainTextStyle: TextStyle(
                                 fontSize: AppFontSizes.medium,
                                 fontWeight: FontWeight.bold),
                             descriptionStyle: TextStyle(
                                 fontSize: AppFontSizes.small,
-                                color: Colors.grey)),
+                                color: Colors.grey)),),
                       ),
                       const VerticalDivider(
                         thickness: 2,
                         color: Colors.grey,
                       ),
                       Expanded(
-                        child: CustomColumnWidget(
+                        child: Obx(() => CustomColumnWidget(
                             icon: Icons.check_circle_outlined,
-                            mainText: "25",
+                            mainText: _controller.adminInfo.value.target,
                             description: "Total Completed",
                             mainTextStyle: TextStyle(
                                 fontSize: AppFontSizes.medium,
                                 fontWeight: FontWeight.bold),
                             descriptionStyle: TextStyle(
                                 fontSize: AppFontSizes.small,
-                                color: Colors.grey)),
+                                color: Colors.grey)),)
                       ),
                     ],
                   ),

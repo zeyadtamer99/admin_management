@@ -13,3 +13,4 @@ class AppFontSizes {
   static const double medium = 20.0;
   static const double large = 28.0;
 }
+

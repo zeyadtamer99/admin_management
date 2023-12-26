@@ -1,17 +1,17 @@
 import 'package:admin_management/views/chat_screen.dart';
 import 'package:admin_management/views/dashboard_screen.dart';
-import 'package:admin_management/views/auth/sign_in_screen.dart';
 import 'package:admin_management/views/new_sales_agent_screen.dart';
 import 'package:admin_management/views/profile_screen.dart';
 import 'package:admin_management/views/search_screen.dart';
-import 'package:admin_management/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../constants/constants.dart';
 import '../controllers/home_controller.dart';
-import '../widgets/custom_text_field.dart';
+import '../models/adminInfo.dart';
 
 class HomeScreen extends StatelessWidget {
+
+
   final HomeController homeController = Get.put(HomeController());
 
   @override

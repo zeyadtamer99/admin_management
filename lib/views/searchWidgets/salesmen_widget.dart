@@ -10,17 +10,17 @@ class SalesmenWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: ListView.builder(
-        itemCount: controller.salesmen.length,
-        itemBuilder: (context, index) {
-          return SalesmanCard(
-            name: controller.salesmen[index].name,
-            calls: controller.salesmen[index].calls,
-            percentage: controller.salesmen[index].percentage,
-            onTap: () {},
-          );
-        },
-      ),
+      child: Container()
+      // ListView.builder(
+      //   itemCount: controller.salesmen.length,
+      //   itemBuilder: (context, index) {
+      //     return SalesmanCard(
+      //       salesman: controller.salesmen[index],
+      //       onTap: controller.navigateToTargetStatus,
+      //       backgroundColor: Colors.white, // or any other color you want
+      //     );
+      //   },
+      // ),
     );
   }
 }
