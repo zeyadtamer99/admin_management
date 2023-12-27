@@ -12,19 +12,20 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   Widget? _myScreen;
-  
+
   final storage = GetStorage();
-  
-  
-  
+
   @override
   Widget build(BuildContext context) {
     var response = storage.read("response");
-    if(storage.read("token") != null && response != null ){
+    if (storage.read("token") != null && response != null) {
       _myScreen = HomeScreen();
-    }else{
+    } else {
       _myScreen = SignInScreen();
     }
-    return GetMaterialApp(title: 'Sales Management', home: _myScreen!,debugShowCheckedModeBanner: false);
+    return GetMaterialApp(
+        title: 'Sales Management',
+        home: _myScreen!,
+        debugShowCheckedModeBanner: false);
   }
 }

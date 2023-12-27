@@ -85,7 +85,7 @@ class AddTask extends StatelessWidget {
                                         ][index],
                                         onPressed: () => controller
                                             .updateSelectedIndex(index),
-                                        width: screenWidth*0.3,
+                                        width: screenWidth * 0.3,
                                         textSize: AppFontSizes.verySmall,
                                         isSelected:
                                             controller.selectedIndex.value ==

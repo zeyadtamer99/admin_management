@@ -26,7 +26,11 @@ class CustomAnalyticsCard extends StatelessWidget {
           width: 200,
           child: Column(
             children: [
-              Text(title, style: TextStyle(fontSize: AppFontSizes.medium, fontWeight: FontWeight.bold,color: Colors.white)),
+              Text(title,
+                  style: TextStyle(
+                      fontSize: AppFontSizes.medium,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white)),
               SizedBox(height: 8),
               Expanded(child: child),
             ],

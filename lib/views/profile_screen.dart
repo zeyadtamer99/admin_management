@@ -9,7 +9,6 @@ import '../widgets/custom_appbar.dart';
 import 'edit_admin_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
-
   final ProfileController _controller = Get.put(ProfileController());
 
   @override
@@ -28,24 +27,29 @@ class ProfileScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Obx(() => Text(
-                _controller.adminInfo.value.name,
-                style: TextStyle(
-                    fontSize: AppFontSizes.large, fontWeight: FontWeight.bold),
-              ),),
+              Obx(
+                () => Text(
+                  _controller.adminInfo.value.name,
+                  style: TextStyle(
+                      fontSize: AppFontSizes.large,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
               SizedBox(
                 height: 8,
               ),
-             Obx(() =>  Text(
-               _controller.adminInfo.value.role,
-               style: TextStyle(fontSize: AppFontSizes.medium),
-             ),),
+              Obx(
+                () => Text(
+                  _controller.adminInfo.value.role,
+                  style: TextStyle(fontSize: AppFontSizes.medium),
+                ),
+              ),
               SizedBox(
                 height: 24,
               ),
               AdvancedCustomButton(
                 text: "Edit",
-                onPressed:_controller.editProfile,
+                onPressed: _controller.editProfile,
                 borderColor: AppColors.primaryColor,
                 width: screenWidth * 0.3,
                 textSize: AppFontSizes.small,
@@ -60,23 +64,26 @@ class ProfileScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Expanded(
-                        child: Obx(() => CustomColumnWidget(
-                            icon: Icons.access_time_rounded,
-                            mainText: _controller.adminInfo.value.current,
-                            description: "On Going",
-                            mainTextStyle: TextStyle(
-                                fontSize: AppFontSizes.medium,
-                                fontWeight: FontWeight.bold),
-                            descriptionStyle: TextStyle(
-                                fontSize: AppFontSizes.small,
-                                color: Colors.grey)),),
+                        child: Obx(
+                          () => CustomColumnWidget(
+                              icon: Icons.access_time_rounded,
+                              mainText: _controller.adminInfo.value.current,
+                              description: "On Going",
+                              mainTextStyle: TextStyle(
+                                  fontSize: AppFontSizes.medium,
+                                  fontWeight: FontWeight.bold),
+                              descriptionStyle: TextStyle(
+                                  fontSize: AppFontSizes.small,
+                                  color: Colors.grey)),
+                        ),
                       ),
                       const VerticalDivider(
                         thickness: 2,
                         color: Colors.grey,
                       ),
                       Expanded(
-                        child: Obx(() => CustomColumnWidget(
+                          child: Obx(
+                        () => CustomColumnWidget(
                             icon: Icons.check_circle_outlined,
                             mainText: _controller.adminInfo.value.target,
                             description: "Total Completed",
@@ -85,8 +92,8 @@ class ProfileScreen extends StatelessWidget {
                                 fontWeight: FontWeight.bold),
                             descriptionStyle: TextStyle(
                                 fontSize: AppFontSizes.small,
-                                color: Colors.grey)),)
-                      ),
+                                color: Colors.grey)),
+                      )),
                     ],
                   ),
                 ),
@@ -107,25 +114,26 @@ class ProfileScreen extends StatelessWidget {
                 height: 12,
               ),
               AdvancedCustomButton(
-                  text: "Targets",
-                  onPressed: () {},
-                  borderColor: AppColors.lightGreyColor,
-                  width: screenWidth * 0.9,
-                  height: screenHeight * 0.07,
-                  textSize: AppFontSizes.medium,
-                  endingWidget: Icon(Icons.arrow_forward_ios_rounded),
+                text: "Targets",
+                onPressed: () {},
+                borderColor: AppColors.lightGreyColor,
+                width: screenWidth * 0.9,
+                height: screenHeight * 0.07,
+                textSize: AppFontSizes.medium,
+                endingWidget: Icon(Icons.arrow_forward_ios_rounded),
               ),
               SizedBox(
                 height: 12,
               ),
               AdvancedCustomButton(
-                  text: "Settings",
-                  onPressed: () {},
-                  borderColor: AppColors.lightGreyColor,
-                  width: screenWidth * 0.9,
-                  height: screenHeight * 0.07,
-                  textSize: AppFontSizes.medium,
-                  endingWidget: Icon(Icons.arrow_forward_ios_rounded),),
+                text: "Settings",
+                onPressed: () {},
+                borderColor: AppColors.lightGreyColor,
+                width: screenWidth * 0.9,
+                height: screenHeight * 0.07,
+                textSize: AppFontSizes.medium,
+                endingWidget: Icon(Icons.arrow_forward_ios_rounded),
+              ),
             ],
           ),
         ),

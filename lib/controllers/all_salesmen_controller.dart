@@ -19,8 +19,18 @@ class AllSalesmenController extends GetxController {
     if (query.isEmpty) {
       filteredSalesmen.value = salesmen;
     } else {
-      filteredSalesmen.value = salesmen.where((salesman) => salesman.name.toLowerCase().contains(query.toLowerCase())).toList();
+      filteredSalesmen.value = salesmen
+          .where((salesman) =>
+              salesman.name.toLowerCase().contains(query.toLowerCase()))
+          .toList();
     }
+  }
+
+  List<Salesman> getTopSalesmen(int count) {
+    List<Salesman> sortedSalesmen = List.from(salesmen);
+    sortedSalesmen.sort((a, b) => b.current
+        .compareTo(a.current)); // Sort by 'current' in descending order
+    return sortedSalesmen.take(count).toList(); // Take the top 'count' salesmen
   }
 
   void navigateToTargetStatus() {
@@ -30,5 +40,4 @@ class AllSalesmenController extends GetxController {
   void goBack() {
     Get.back();
   }
-
 }

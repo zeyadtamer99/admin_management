@@ -10,10 +10,9 @@ class SalesAgentController extends GetxController {
   final progressValue2 = 0.0.obs;
   final progressValue3 = 0.0.obs;
 
-
   var nameErrorText = Rx<String?>(null);
   var phoneNumberErrorText = Rx<String?>(null);
-  var emailErrorText= Rx<String?>(null);
+  var emailErrorText = Rx<String?>(null);
   var startDateErrorText = Rx<String?>(null);
   var progressValueErrorText = Rx<String?>(null);
 
@@ -44,6 +43,7 @@ class SalesAgentController extends GetxController {
   void updateProgressValue3(double value) {
     progressValue3.value = value;
   }
+
   String? validateEmail(String? value) {
     if (value == null || value.isEmpty) return 'Email cannot be empty';
     return null;
@@ -69,11 +69,11 @@ class SalesAgentController extends GetxController {
     return null;
   }
 
-  void onLeadingIconPressed(){
+  void onLeadingIconPressed() {
     Get.back();
   }
-  void onSave(){
+
+  void onSave() {
     print("Things to do to save task and push to api");
   }
-  
 }

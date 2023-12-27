@@ -10,8 +10,6 @@ import '../controllers/home_controller.dart';
 import '../models/adminInfo.dart';
 
 class HomeScreen extends StatelessWidget {
-
-
   final HomeController homeController = Get.put(HomeController());
 
   @override

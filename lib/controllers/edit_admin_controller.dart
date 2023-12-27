@@ -5,9 +5,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
-
 import '../models/adminInfo.dart';
-
 
 class EditAdminController extends GetxController {
   final AdminInfo adminInfo;
@@ -31,7 +29,8 @@ class EditAdminController extends GetxController {
     // Set the text of the other controllers...
   }
   Future<void> updateAdminInfo() async {
-    Uri baseUrl = Uri.parse("https://dgcuae.com/api/prototype/user/profile/update");
+    Uri baseUrl =
+        Uri.parse("https://dgcuae.com/api/prototype/user/profile/update");
 
     final storage = GetStorage();
     String? token = storage.read('token');
@@ -40,7 +39,7 @@ class EditAdminController extends GetxController {
       baseUrl,
       headers: {
         'Authorization': 'Bearer $token',
-        "Accept" : "application/json",
+        "Accept": "application/json",
       },
       body: {
         "name": nameController.text,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../constants/constants.dart';
 import '../models/salesmen.dart';
+
 class SalesmanCard extends StatelessWidget {
   final Salesman salesman;
   final Color backgroundColor;
@@ -16,7 +17,7 @@ class SalesmanCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ()=>onTap(),
+      onTap: () => onTap(),
       child: Card(
         color: backgroundColor,
         shape: RoundedRectangleBorder(
@@ -34,11 +35,15 @@ class SalesmanCard extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(salesman.name, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                        SizedBox(width: 6,),
-                        Text('(${salesman.role})', style: TextStyle(fontSize: 14, color: Colors.grey)),
+                        Text(salesman.name,
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)),
+                        SizedBox(
+                          width: 6,
+                        ),
+                        Text('(${salesman.role})',
+                            style: TextStyle(fontSize: 14, color: Colors.grey)),
                       ],
-
                     ),
                     SizedBox(height: 8),
                     Text('Current: ${salesman.current}'),
@@ -55,7 +60,8 @@ class SalesmanCard extends StatelessWidget {
                     child: CircularProgressIndicator(
                       value: double.parse(salesman.target) / 100,
                       backgroundColor: Colors.grey,
-                      valueColor: AlwaysStoppedAnimation<Color>(AppColors.primaryColor),
+                      valueColor:
+                          AlwaysStoppedAnimation<Color>(AppColors.primaryColor),
                     ),
                   ),
                   Text('${salesman.target}%'),

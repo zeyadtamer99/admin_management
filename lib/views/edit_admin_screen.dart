@@ -18,7 +18,10 @@ class EditAdminPage extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      appBar: CustomAppBar(title: "Edit",leadingIcon: Icons.arrow_back_ios_rounded,),
+      appBar: CustomAppBar(
+        title: "Edit",
+        leadingIcon: Icons.arrow_back_ios_rounded,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Expanded(
@@ -88,14 +91,14 @@ class EditAdminPage extends StatelessWidget {
                   ),
                 ),
               ),
-
               SizedBox(
-                width: screenWidth*0.4,
+                width: screenWidth * 0.4,
                 child: ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
                     primary: AppColors.primaryColor, // This is the button color
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10), // This is the corner radius
+                      borderRadius: BorderRadius.circular(
+                          10), // This is the corner radius
                     ),
                   ),
                   onPressed: controller.updateAdminInfo,

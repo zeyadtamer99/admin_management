@@ -5,7 +5,8 @@ class AddTaskController extends GetxController {
   final taskDate = ''.obs;
   final startTime = ''.obs;
   final endTime = ''.obs;
-  var selectedIndex = (-1).obs; // Add this field to keep track of the selected index
+  var selectedIndex =
+      (-1).obs; // Add this field to keep track of the selected index
 
   var taskNameErrorText = Rx<String?>(null);
   var taskDateErrorText = Rx<String?>(null);
@@ -28,9 +29,9 @@ class AddTaskController extends GetxController {
     endTime.value = value;
   }
 
-
   void updateSelectedIndex(int index) {
-    selectedIndex.value = index; // Update the selected index when a button is pressed
+    selectedIndex.value =
+        index; // Update the selected index when a button is pressed
   }
 
   String? validateTaskName(String? value) {

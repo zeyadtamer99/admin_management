@@ -29,7 +29,9 @@ class SignInScreen extends StatelessWidget {
                 children: [
                   Text(
                     'Welcome Back',
-                    style: TextStyle(fontSize: AppFontSizes.large, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: AppFontSizes.large,
+                        fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
                   SizedBox(
@@ -37,7 +39,8 @@ class SignInScreen extends StatelessWidget {
                     child: Text(
                       'Please enter your email address and password for login',
                       softWrap: true,
-                      style: TextStyle(fontSize: AppFontSizes.small, color: Colors.grey),
+                      style: TextStyle(
+                          fontSize: AppFontSizes.small, color: Colors.grey),
                     ),
                   ),
                   SizedBox(height: 36),
@@ -45,20 +48,17 @@ class SignInScreen extends StatelessWidget {
                     title: 'Username',
                     hintText: 'Enter your username',
                     controller: controller.mailCtrl,
-                    onChanged: (value) => controller.username(value),
-                    validator: (value) => controller.validateUsername(value), errorText: controller.usernameErrorText,
+                    validator: (value) => controller.validateUsername(value),
+                    errorText: controller.usernameErrorText,
                   ),
                   SizedBox(height: 16),
                   CustomTextField(
                     title: 'Password',
                     controller: controller.passwordCtrl,
                     hintText: 'Enter your password',
-                    onChanged: (value) => controller.password(value),
-                    validator: (value) {
-                      if(controller.passwordCtrl.text.isEmpty){
-                        return "Please enter a valid password";
-                      }
-                    },
+                    validator: (value) => controller.validatePassword(value),
+                    isPasswordField: true,
+                    errorText: controller.passwordErrorText,
                   ),
                   SizedBox(height: 8),
                   Row(
@@ -68,7 +68,9 @@ class SignInScreen extends StatelessWidget {
                         onPressed: controller.onForgotPasswordPressed,
                         child: Text(
                           'Forgot password?',
-                          style: TextStyle(color: Colors.black,fontSize: AppFontSizes.verySmall),
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: AppFontSizes.verySmall),
                         ),
                       ),
                     ],

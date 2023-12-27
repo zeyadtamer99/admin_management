@@ -25,7 +25,7 @@ class CustomSlider extends StatelessWidget {
       children: [
         Text(
           title,
-          style: TextStyle(fontSize: AppFontSizes.small,color: Colors.grey),
+          style: TextStyle(fontSize: AppFontSizes.small, color: Colors.grey),
         ),
         Row(
           children: [
@@ -44,7 +44,8 @@ class CustomSlider extends StatelessWidget {
               padding: EdgeInsets.all(8.0), // Add some padding
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(14),
-                border: Border.all(color: Colors.black, width: 2.0), // Add border
+                border:
+                    Border.all(color: Colors.black, width: 2.0), // Add border
               ),
               child: Text(
                 value.toStringAsFixed(0),
@@ -57,4 +58,3 @@ class CustomSlider extends StatelessWidget {
     );
   }
 }
-

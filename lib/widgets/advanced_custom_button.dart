@@ -51,23 +51,34 @@ class AdvancedCustomButton extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
-                mainAxisAlignment: endingWidget == null ? MainAxisAlignment.spaceAround : MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: endingWidget == null
+                    ? MainAxisAlignment.spaceAround
+                    : MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: endingWidget == null ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+                    crossAxisAlignment: endingWidget == null
+                        ? CrossAxisAlignment.center
+                        : CrossAxisAlignment.start,
                     children: [
                       Text(
                         text,
-                        style: TextStyle(fontSize: textSize, fontWeight: fontWeight), // Use text size and weight
+                        style: TextStyle(
+                            fontSize: textSize,
+                            fontWeight: fontWeight), // Use text size and weight
                       ),
                       if (subtitle != null) Text(subtitle!),
-                    ],),
-                  if (endingWidget != null) Container(child: endingWidget,), // Use spread operator here
+                    ],
+                  ),
+                  if (endingWidget != null)
+                    Container(
+                      child: endingWidget,
+                    ), // Use spread operator here
                 ],
               ),
             ),
-            if (bottomWidget != null) Expanded(child: bottomWidget!), // Add new widget here
+            if (bottomWidget != null)
+              Expanded(child: bottomWidget!), // Add new widget here
           ],
         ),
       ),

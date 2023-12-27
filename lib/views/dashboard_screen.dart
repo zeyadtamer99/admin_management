@@ -11,7 +11,6 @@ import '../controllers/dash_board_controller.dart';
 import '../widgets/sales_man_card.dart';
 
 class DashboardScreen extends StatelessWidget {
-
   final random = Random();
 
   List<_SalesData> generateRandomData() {
@@ -72,7 +71,7 @@ class DashboardScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 32,
+                height: 16,
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -100,16 +99,22 @@ class DashboardScreen extends StatelessWidget {
                     ),
                     SizedBox(
                       height: screenHeight * 0.4,
-                      child: Obx(()=>ListView.builder(
-                        itemCount: controller.salesmen.length,
-                        itemBuilder: (context, index) {
-                          return SalesmanCard(
-                            salesman: controller.salesmen[index],
-                            onTap: controller.navigateToTargetStatus,
-                            backgroundColor: Colors.white,
+                      child: Obx(() {
+                        if (controller.isLoading.value) {
+                          return Center(child: CircularProgressIndicator());
+                        } else {
+                          return ListView.builder(
+                            itemCount: controller.salesmen.length,
+                            itemBuilder: (context, index) {
+                              return SalesmanCard(
+                                salesman: controller.salesmen[index],
+                                onTap: controller.navigateToTargetStatus,
+                                backgroundColor: Colors.white,
+                              );
+                            },
                           );
-                        },
-                      ),),
+                        }
+                      }),
                     ),
                   ],
                 ),

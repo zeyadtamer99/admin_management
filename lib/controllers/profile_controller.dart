@@ -37,7 +37,7 @@ class ProfileController extends GetxController {
       baseUrl,
       headers: {
         'Authorization': 'Bearer $token',
-        "Accept" : "application/json",
+        "Accept": "application/json",
       },
     );
 
@@ -47,10 +47,8 @@ class ProfileController extends GetxController {
     }
   }
 
-
   void editProfile() {
     Get.to(() => EditAdminPage(adminInfo: adminInfo.value));
-
   }
 
   void onLeadingPressed() {

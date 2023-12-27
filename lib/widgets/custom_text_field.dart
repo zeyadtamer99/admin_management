@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../controllers/sign_in_controller.dart';
+
 class CustomTextField extends StatelessWidget {
   final String title;
   final String hintText;
@@ -14,6 +16,8 @@ class CustomTextField extends StatelessWidget {
   final Rx<String?>? errorText;
   final double? width;
   final double? height;
+  final bool? isPasswordField;
+  final SignInController signInController = Get.find();
 
   CustomTextField({
     required this.title,
@@ -25,6 +29,7 @@ class CustomTextField extends StatelessWidget {
     this.errorText,
     this.width,
     this.height,
+    this.isPasswordField,
   });
 
   @override
@@ -38,21 +43,37 @@ class CustomTextField extends StatelessWidget {
         ),
         SizedBox(height: 8),
         Container(
-          width: width, // Use the width parameter
-          height: height, // Use the height parameter
-          child: TextFormField(
-            controller: controller,
-            decoration: InputDecoration(
-              hintText: hintText,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16.0),
+          width: width,
+          height: height,
+          child: Obx(() {
+            return TextFormField(
+              controller: controller,
+              obscureText: isPasswordField != null && isPasswordField!
+                  ? !signInController.isPasswordVisible.value
+                  : false,
+              decoration: InputDecoration(
+                hintText: hintText,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16.0),
+                ),
+                suffixIcon: isPasswordField != null && isPasswordField!
+                    ? IconButton(
+                        icon: Icon(
+                          signInController.isPasswordVisible.value
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                        onPressed: signInController.togglePasswordVisibility,
+                      )
+                    : null,
+                errorText: errorText?.value,
               ),
-              suffixIcon: endIcon != null ? Icon(endIcon) : null,
-              errorText: errorText?.value,
-            ),
-            onChanged: onChanged,
-            validator: validator,
-          ),
+              onChanged: (value) {
+                onChanged!(value.trim());
+              },
+              validator: validator,
+            );
+          }),
         ),
       ],
     );
