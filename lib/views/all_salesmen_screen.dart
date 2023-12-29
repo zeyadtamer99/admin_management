@@ -129,6 +129,4 @@ class AllSalesmenPage extends StatelessWidget {
       ],
     );
   }
-
-
 }
