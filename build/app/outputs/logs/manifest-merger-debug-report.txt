@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 application
-INJECTED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml:2:5-32:19
+INJECTED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml:5:5-36:19
 MERGED from [:url_launcher_android] E:\Hassan Job Karam\admin_management\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-14:19
 MERGED from [:url_launcher_android] E:\Hassan Job Karam\admin_management\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-14:19
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\20102\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:24:5-31:19
@@ -14,11 +14,11 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\20
 	android:name
 		INJECTED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml
 manifest
-ADDED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml:1:1-33:12
-INJECTED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml:1:1-33:12
-INJECTED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml:1:1-33:12
-INJECTED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml:1:1-33:12
-MERGED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml:1:1-33:12
+ADDED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml:1:1-37:12
+INJECTED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml:1:1-37:12
+INJECTED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml:1:1-37:12
+INJECTED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml:1:1-37:12
+MERGED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml:1:1-37:12
 MERGED from [:url_launcher_android] E:\Hassan Job Karam\admin_management\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-16:12
 MERGED from [:path_provider_android] E:\Hassan Job Karam\admin_management\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\20102\.gradle\caches\transforms-3\ae81e06d24c799147c26814497a2a305\transformed\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:17:1-23:12
@@ -45,18 +45,28 @@ INJECTED from E:\Hassan Job Karam\admin_management\android\app\src\debug\Android
 INJECTED from E:\Hassan Job Karam\admin_management\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 	package
 		INJECTED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml
-		ADDED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml:1:1-33:12
+		ADDED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml:1:1-37:12
 		INJECTED from E:\Hassan Job Karam\admin_management\android\app\src\debug\AndroidManifest.xml
 	android:versionName
 		INJECTED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml
-		ADDED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml:1:1-33:12
+		ADDED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml:1:1-37:12
 		INJECTED from E:\Hassan Job Karam\admin_management\android\app\src\debug\AndroidManifest.xml
 	android:versionCode
 		INJECTED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml
-		ADDED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml:1:1-33:12
+		ADDED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml:1:1-37:12
 		INJECTED from E:\Hassan Job Karam\admin_management\android\app\src\debug\AndroidManifest.xml
 	xmlns:android
 		ADDED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml:1:11-69
+uses-permission#android.permission.INTERNET
+ADDED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml:2:5-67
+MERGED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml:2:5-67
+MERGED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml:2:5-67
+	android:name
+		ADDED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml:2:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml:3:5-79
+	android:name
+		ADDED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml:3:22-76
 uses-sdk
 INJECTED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml
@@ -111,10 +121,6 @@ INJECTED from E:\Hassan Job Karam\admin_management\android\app\src\debug\Android
 	android:minSdkVersion
 		INJECTED from E:\Hassan Job Karam\admin_management\android\app\src\main\AndroidManifest.xml
 		INJECTED from E:\Hassan Job Karam\admin_management\android\app\src\debug\AndroidManifest.xml
-uses-permission#android.permission.INTERNET
-ADDED from E:\Hassan Job Karam\admin_management\android\app\src\debug\AndroidManifest.xml:6:5-66
-	android:name
-		ADDED from E:\Hassan Job Karam\admin_management\android\app\src\debug\AndroidManifest.xml:6:22-64
 activity#io.flutter.plugins.urllauncher.WebViewActivity
 ADDED from [:url_launcher_android] E:\Hassan Job Karam\admin_management\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-13:74
 	android:exported

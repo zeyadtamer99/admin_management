@@ -77,14 +77,42 @@ class SignInScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 24),
                   Center(
-                    child: CustomButton(
-                      text: 'Sign In',
-                      backgroundColor: Colors.red,
-                      onPressed: controller.onSignInPressed,
-                      fontSize: AppFontSizes.small,
-                      width: screenWidth * 0.8,
-                      height: screenHeight * 0.065,
-                    ),
+                    child:Obx(() {
+                      if (controller.isLoading.value) {
+                        return Center(child: CircularProgressIndicator());
+                      } else {
+                        return CustomButton(
+                          text: 'Sign In',
+                          backgroundColor: Colors.red,
+                          onPressed: () async {
+                            controller.isLoading.value = true;
+                            String? errorMessage = await controller.onSignInPressed();
+                            controller.isLoading.value = false;
+                            if (errorMessage != null) {
+                              Get.dialog(
+                                AlertDialog(
+                                  title: Text('Error'),
+                                  content: Text('Failed to sign in. Error: $errorMessage'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      child: Text('OK'),
+                                      onPressed: () {
+                                        Get.back();
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }
+                          },
+                          fontSize: AppFontSizes.small,
+                          width: screenWidth * 0.8,
+                          height: screenHeight * 0.065,
+                        );
+                      }
+                    }),
+
+
                   ),
                 ],
               ),

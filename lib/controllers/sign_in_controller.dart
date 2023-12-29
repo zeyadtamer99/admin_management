@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:admin_management/views/home_screen.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -9,6 +10,8 @@ import 'package:http/http.dart' as http;
 
 class SignInController extends GetxController {
   var isPasswordVisible = false.obs;
+  var isLoading = false.obs;
+
 
   TextEditingController mailCtrl = TextEditingController();
   TextEditingController passwordCtrl = TextEditingController();
@@ -40,7 +43,7 @@ class SignInController extends GetxController {
     }
   }
 
-  Future<void> onSignInPressed() async {
+  Future<String?> onSignInPressed() async {
     usernameErrorText.value = null;
     passwordErrorText.value = null;
 
@@ -55,14 +58,19 @@ class SignInController extends GetxController {
     }
 
     if (isValid) {
-      await signIn();
-      print('Sign-in successful');
+      isLoading.value = true;
+      String? errorMessage = await signIn();
+      isLoading.value = false;
+      return errorMessage;
     } else {
-      print('Sign-in failed due to validation errors');
+      return 'Validation failed';
     }
   }
 
-  signIn() async {
+
+
+
+  Future<String?> signIn() async {
     Uri baseUrl = Uri.parse("https://dgcuae.com/api/prototype/user/login");
 
     var res = await http.post(baseUrl, body: {
@@ -73,13 +81,19 @@ class SignInController extends GetxController {
     var response = jsonDecode(res.body);
     if (response['status'] == 'successful') {
       final storage = GetStorage();
-
       await storage.write('token', response['data']['token']);
-      print("the token is: " + storage.read('token'));
+      print("The status is: ${response['status']}");
+      print("the token stored is: " + storage.read('token'));
       Get.offAll(() => HomeScreen());
+      return null;
+    } else {
+      print("The Error is: ${response['message']}");
+      return response['message'];
     }
-    print(res.body);
+
   }
+
+
 
   void onForgotPasswordPressed() {
     print('Forgot password pressed');

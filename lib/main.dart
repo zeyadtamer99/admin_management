@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var response = storage.read("response");
-    if (storage.read("token") != null && response != null) {
+    if (storage.read("token") != null) {
       _myScreen = HomeScreen();
     } else {
       _myScreen = SignInScreen();
