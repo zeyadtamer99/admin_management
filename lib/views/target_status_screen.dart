@@ -1,4 +1,5 @@
 import 'package:admin_management/constants/constants.dart';
+import 'package:admin_management/models/salesmen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
@@ -8,14 +9,12 @@ import '../widgets/custom_appbar.dart';
 import '../widgets/advanced_custom_button.dart';
 
 class TargetStatus extends StatelessWidget {
-  final ValueNotifier<double> valueNotifier = ValueNotifier(60);
-  final ValueNotifier<double> valueNotifier2 = ValueNotifier(60);
-  final TargetStatusController controller = Get.put(TargetStatusController());
+  final TargetStatusController controller;
+
+  TargetStatus({required RxList<Salesman> salesmen}) : controller = Get.put(TargetStatusController(salesmen));
 
   @override
   Widget build(BuildContext context) {
-    valueNotifier.value = 60.0;
-    valueNotifier2.value = 80.0;
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -32,7 +31,7 @@ class TargetStatus extends StatelessWidget {
           Stack(alignment: Alignment.center, children: [
             SimpleCircularProgressBar(
               size: 200,
-              valueNotifier: valueNotifier2,
+              valueNotifier: controller.valueNotifier2,
               startAngle: 0,
               progressColors: const [Colors.black],
               progressStrokeWidth: 30,
@@ -43,7 +42,7 @@ class TargetStatus extends StatelessWidget {
             ),
             SimpleCircularProgressBar(
               size: 200,
-              valueNotifier: valueNotifier,
+              valueNotifier: controller.valueNotifier,
               startAngle: 0,
               fullProgressColor: Colors.green,
               progressColors: const [AppColors.primaryColor],
@@ -86,7 +85,7 @@ class TargetStatus extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                    width: 8.0), // Add some space between the circle and text
+                    width: 8.0),
                 Text("In Progress"),
               ],
             ),
@@ -130,7 +129,7 @@ class TargetStatus extends StatelessWidget {
               ),
               AdvancedCustomButton(
                 text: 'Completed',
-                subtitle: "18 tasks now . 22 tasks completed",
+                subtitle: "${controller.current} tasks now . ${controller.target} tasks completed",
                 onPressed: controller.onButtonPressed,
                 endingWidget: Icon(Icons.more_horiz_rounded),
                 borderColor: AppColors.primaryColor,

@@ -16,6 +16,9 @@ class SalesmanCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double progress = (salesman.target == '0.00' || salesman.target.isEmpty)
+        ? 0
+        : double.parse(salesman.current) / double.parse(salesman.target);
     return GestureDetector(
       onTap: () => onTap(),
       child: Card(
@@ -46,7 +49,7 @@ class SalesmanCard extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 8),
-                    Text('Current: ${salesman.current}'),
+                    Text('Current: ${double.parse(salesman.current) == 0.0 ? 0 : double.parse(salesman.current).toStringAsFixed(0)}'),
                   ],
                 ),
               ),
@@ -58,13 +61,13 @@ class SalesmanCard extends StatelessWidget {
                     width: 45,
                     height: 45,
                     child: CircularProgressIndicator(
-                      value: double.parse(salesman.target) / 100,
+                      value: progress,
                       backgroundColor: Colors.grey,
                       valueColor:
                           AlwaysStoppedAnimation<Color>(AppColors.primaryColor),
                     ),
                   ),
-                  Text('${salesman.target}%'),
+                  Text('${(progress * 100).toStringAsFixed(0)}%'),
                 ],
               ),
             ],

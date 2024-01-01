@@ -31,39 +31,73 @@ class NewSalesAgentScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  CustomTextField(
-                    title: 'Name',
-                    hintText: 'Enter Name',
-                    onChanged: (value) => _controller.updateName(value),
-                    validator: (value) => _controller.validateName(value),
+                  TextFormField(
+                    controller: _controller.nameController.value,
+                    decoration: InputDecoration(
+                      labelText: 'Name',
+                      labelStyle: TextStyle(color: AppColors.secondaryColor),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(color: AppColors.secondaryColor),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(color: AppColors.primaryColor),
+                      ),
+                    ),
+                    textInputAction: TextInputAction.next,
                   ),
-                  SizedBox(
-                    height: 20,
+                  SizedBox(height: 20),
+                  TextFormField(
+                    controller: _controller.phoneNumberController.value,
+                    decoration: InputDecoration(
+                      labelText: 'Phone Number',
+                      labelStyle: TextStyle(color: AppColors.secondaryColor),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(color: AppColors.secondaryColor),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(color: AppColors.primaryColor),
+                      ),
+                    ),
+                    textInputAction: TextInputAction.next,
                   ),
-                  CustomTextField(
-                    title: 'Phone Number',
-                    hintText: 'Enter Phone Number',
-                    onChanged: (value) => _controller.updatePhoneNumber(value),
-                    validator: (value) =>
-                        _controller.validatePhoneNumber(value),
+                  SizedBox(height: 20),
+                  TextFormField(
+                    controller: _controller.emailController.value,
+                    decoration: InputDecoration(
+                      labelText: 'Email',
+                      labelStyle: TextStyle(color: AppColors.secondaryColor),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(color: AppColors.secondaryColor),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(color: AppColors.primaryColor),
+                      ),
+                    ),
+                    textInputAction: TextInputAction.next,
                   ),
-                  SizedBox(
-                    height: 20,
+                  SizedBox(height: 20),
+                  TextFormField(
+                    controller: _controller.startDateController.value,
+                    decoration: InputDecoration(
+                      labelText: 'Start Date',
+                      labelStyle: TextStyle(color: AppColors.secondaryColor),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(color: AppColors.secondaryColor),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(color: AppColors.primaryColor),
+                      ),
+                    ),
+                    textInputAction: TextInputAction.next,
                   ),
-                  CustomTextField(
-                      title: 'Email',
-                      hintText: 'Enter Email',
-                      onChanged: (value) => _controller.updateEmail(value),
-                      validator: (value) => _controller.validateEmail(value)),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  CustomTextField(
-                      title: 'Start Date',
-                      hintText: 'Enter Start Date',
-                      onChanged: (value) => _controller.updateStartDate(value),
-                      validator: (value) =>
-                          _controller.validateStartDate(value)),
                   SizedBox(
                     height: 20,
                   ),

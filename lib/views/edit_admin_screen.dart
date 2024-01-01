@@ -19,94 +19,92 @@ class EditAdminPage extends StatelessWidget {
 
     return Scaffold(
       appBar: CustomAppBar(
+        onLeadingPressed: controller.onLeadingIcon,
         title: "Edit",
         leadingIcon: Icons.arrow_back_ios_rounded,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextField(
-                controller: controller.nameController,
-                decoration: InputDecoration(
-                  labelText: 'Name',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-              TextField(
-                controller: controller.emailController,
-                decoration: InputDecoration(
-                  labelText: 'Email',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-              TextField(
-                controller: controller.phoneNumberController,
-                decoration: InputDecoration(
-                  labelText: 'Phone Number',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-              TextField(
-                controller: controller.targetController,
-                decoration: InputDecoration(
-                  labelText: 'Target',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-              TextField(
-                controller: controller.currentController,
-                decoration: InputDecoration(
-                  labelText: 'Current',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-              TextField(
-                controller: controller.roleController,
-                decoration: InputDecoration(
-                  labelText: 'Role',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-              TextField(
-                controller: controller.statusController,
-                decoration: InputDecoration(
-                  labelText: 'Status',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: screenWidth * 0.4,
-                child: ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    primary: AppColors.primaryColor, // This is the button color
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                          10), // This is the corner radius
+          child: SingleChildScrollView(
+            child: Form(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextFormField(
+                    controller: controller.nameController,
+                    decoration: InputDecoration(
+                      labelText: 'Name',
+                      labelStyle: TextStyle(color: AppColors.secondaryColor),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(color: AppColors.secondaryColor),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(color: AppColors.primaryColor),
+                      ),
                     ),
+                    textInputAction: TextInputAction.next,
                   ),
-                  onPressed: controller.updateAdminInfo,
-                  icon: Icon(Icons.edit), // This is the ending icon
-                  label: Text('Save'),
-                ),
-              )
-            ],
+                  SizedBox(
+                    height: 24,
+                  ),
+                  TextFormField(
+                    controller: controller.emailController,
+                    decoration: InputDecoration(
+                      labelText: 'Email',
+                      labelStyle: TextStyle(color: AppColors.secondaryColor),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(color: AppColors.secondaryColor),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(color: AppColors.primaryColor),
+                      ),
+                    ),
+                    keyboardType: TextInputType.emailAddress,
+                    textInputAction: TextInputAction.next,
+                  ),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  TextFormField(
+                    controller: controller.phoneNumberController,
+                    decoration: InputDecoration(
+                      labelText: 'Phone Number',
+                      labelStyle: TextStyle(color: AppColors.secondaryColor),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(color: AppColors.secondaryColor),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(color: AppColors.primaryColor),
+                      ),
+                    ),
+                    keyboardType: TextInputType.phone,
+                    textInputAction: TextInputAction.next,
+                  ),
+
+                  SizedBox(
+                    height: 24,
+                  ),
+                  AdvancedCustomButton(
+                    text: "Save",
+                    onPressed: controller.updateAdminInfo,
+                    textSize: 14,
+                    borderColor: AppColors.primaryColor,
+                    width: screenWidth * 0.4,
+                    endingWidget: Icon(
+                      Icons.edit,
+                      color: AppColors.primaryColor,
+                    ),
+                  )
+                ],
+              ),
+            ),
           ),
         ),
       ),

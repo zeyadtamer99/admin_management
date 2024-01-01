@@ -1,4 +1,5 @@
 import 'package:admin_management/views/home_screen.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SalesAgentController extends GetxController {
@@ -10,27 +11,11 @@ class SalesAgentController extends GetxController {
   final progressValue2 = 0.0.obs;
   final progressValue3 = 0.0.obs;
 
-  var nameErrorText = Rx<String?>(null);
-  var phoneNumberErrorText = Rx<String?>(null);
-  var emailErrorText = Rx<String?>(null);
-  var startDateErrorText = Rx<String?>(null);
-  var progressValueErrorText = Rx<String?>(null);
+  final nameController = TextEditingController().obs;
+  final phoneNumberController = TextEditingController().obs;
+  final emailController = TextEditingController().obs;
+  final startDateController = TextEditingController().obs;
 
-  void updateName(String value) {
-    name.value = value;
-  }
-
-  void updatePhoneNumber(String value) {
-    phoneNumber.value = value;
-  }
-
-  void updateEmail(String value) {
-    email.value = value;
-  }
-
-  void updateStartDate(String value) {
-    startDate.value = value;
-  }
 
   void updateProgressValue1(double value) {
     progressValue1.value = value;

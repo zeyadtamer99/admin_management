@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../constants/constants.dart';
 import '../controllers/home_controller.dart';
-import '../models/adminInfo.dart';
 
 class HomeScreen extends StatelessWidget {
   final HomeController homeController = Get.put(HomeController());

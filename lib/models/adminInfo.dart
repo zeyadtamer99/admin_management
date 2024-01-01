@@ -34,4 +34,17 @@ class AdminInfo {
       team: json['team'],
     );
   }
+  Map<String, dynamic> toJson() { 
+    return {
+      'id': id,
+      'name': name,
+      'email': email,
+      'phoneNumber': phoneNumber,
+      'target': target,
+      'current': current,
+      'role': role,
+      'status': status,
+      'team': team,
+    };
+  }
 }

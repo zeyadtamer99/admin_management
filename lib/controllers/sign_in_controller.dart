@@ -90,7 +90,6 @@ class SignInController extends GetxController {
       print("The Error is: ${response['message']}");
       return response['message'];
     }
-
   }
 
 
@@ -101,5 +100,6 @@ class SignInController extends GetxController {
 
   void togglePasswordVisibility() {
     isPasswordVisible.value = !isPasswordVisible.value;
+    update();
   }
 }

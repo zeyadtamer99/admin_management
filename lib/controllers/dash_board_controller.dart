@@ -49,7 +49,7 @@ class DashboardController extends GetxController
   }
 
   void navigateToTargetStatus() {
-    Get.to(() => TargetStatus());
+    Get.to(() => TargetStatus(salesmen: salesmen,));
   }
 
   void navigateToSalesmen() {

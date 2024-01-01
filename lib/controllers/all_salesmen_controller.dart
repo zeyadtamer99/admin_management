@@ -29,12 +29,12 @@ class AllSalesmenController extends GetxController {
   List<Salesman> getTopSalesmen(int count) {
     List<Salesman> sortedSalesmen = List.from(salesmen);
     sortedSalesmen.sort((a, b) => b.current
-        .compareTo(a.current)); // Sort by 'current' in descending order
-    return sortedSalesmen.take(count).toList(); // Take the top 'count' salesmen
+        .compareTo(a.current));
+    return sortedSalesmen.take(count).toList();
   }
 
   void navigateToTargetStatus() {
-    Get.to(() => TargetStatus());
+    Get.to(() => TargetStatus(salesmen: salesmen,));
   }
 
   void goBack() {
