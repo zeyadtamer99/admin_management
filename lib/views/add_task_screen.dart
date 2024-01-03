@@ -2,14 +2,15 @@ import 'package:admin_management/constants/constants.dart';
 import 'package:admin_management/widgets/advanced_custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../controllers/add_task_controller.dart';
 import '../widgets/custom_appbar.dart';
 import '../widgets/custom_button.dart';
-import '../widgets/custom_text_field.dart';
 
 class AddTask extends StatelessWidget {
   final AddTaskController controller = Get.put(AddTaskController());
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,90 +25,113 @@ class AddTask extends StatelessWidget {
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(12.0),
-            child: Column(
-              children: [
-                CustomTextField(
-                  title: 'Task Name',
-                  hintText: 'Enter task name',
-                  onChanged: controller.updateTaskName,
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                CustomTextField(
-                  title: 'Task Date',
-                  endIcon: Icons.date_range_rounded,
-                  hintText: 'Enter Date',
-                  onChanged: controller.updateTaskDate,
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: SingleChildScrollView(
+              child: Form(
+                key: _formKey,
+                child: Column(
                   children: [
-                    CustomTextField(
-                      width: screenWidth * 0.45,
-                      title: 'Start Time',
-                      hintText: 'Enter Start Time',
-                      onChanged: controller.updateStartTime,
+                    TextFormField(
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        labelText: 'Task Name',
+                        labelStyle: TextStyle(color: Colors.grey),
+                      ),
+                      textInputAction: TextInputAction.next,
+                      controller: controller.taskNameController,
                     ),
-                    CustomTextField(
-                      width: screenWidth * 0.45,
-                      title: 'End Time',
-                      hintText: 'Enter End Time',
-                      onChanged: controller.updateEndTime,
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Date',
+                        labelStyle: TextStyle(color: Colors.grey),
+                        border: InputBorder.none,
+                      ),
+                      controller: controller.dateController,
+                      onTap: () => controller.selectDate(),
+                      textInputAction: TextInputAction.next,
                     ),
-                  ],
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Task Status",
-                      style: TextStyle(
-                          fontSize: AppFontSizes.small, color: Colors.grey),
+                    SizedBox(
+                      height: 12,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: List.generate(
-                          3,
-                          (index) => GetBuilder<AddTaskController>(
-                                builder: (controller) {
-                                  return Obx(() => AdvancedCustomButton(
-                                        text: [
-                                          "On Going",
-                                          "Completed",
-                                          "To Do"
-                                        ][index],
-                                        onPressed: () => controller
-                                            .updateSelectedIndex(index),
-                                        width: screenWidth * 0.3,
-                                        textSize: AppFontSizes.verySmall,
-                                        isSelected:
-                                            controller.selectedIndex.value ==
+                      children: [
+                        SizedBox(
+                          width: screenWidth * 0.4,
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                              labelText: 'Start Time',
+                              labelStyle: TextStyle(color: Colors.grey),
+                              border: InputBorder.none,
+                            ),
+                            controller: controller.startTimeController,
+                            onTap: () => controller.selectStartTime(),
+                            textInputAction: TextInputAction.next,
+                          ),
+                        ),
+                        SizedBox(
+                          width: screenWidth * 0.4,
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                              labelText: 'End Time',
+                              labelStyle: TextStyle(color: Colors.grey),
+                              border: InputBorder.none,
+                            ),
+                            controller: controller.endTimeController,
+                            onTap: () => controller.selectEndTime(),
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 18,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Task Status",
+                          style: TextStyle(
+                              fontSize: AppFontSizes.small, color: Colors.grey),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: List.generate(
+                              2,
+                              (index) => GetBuilder<AddTaskController>(
+                                    builder: (controller) {
+                                      return Obx(() => AdvancedCustomButton(
+                                            text: [
+                                              "On Going",
+                                              "Completed",
+                                            ][index],
+                                            onPressed: () => controller
+                                                .updateSelectedIndex(index),
+                                            height: screenHeight * 0.075,
+                                            width: screenWidth * 0.4,
+                                            textSize: AppFontSizes.verySmall,
+                                            isSelected: controller
+                                                    .selectedIndex.value ==
                                                 index,
-                                      ));
-                                },
-                              )),
-                    )
+                                          ));
+                                    },
+                                  )),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 36,
+                    ),
+                    CustomButton(
+                      text: "Save",
+                      backgroundColor: AppColors.primaryColor,
+                      fontSize: AppFontSizes.medium,
+                      width: screenWidth * 0.7,
+                      height: screenHeight * 0.06,
+                      onPressed: controller.onSaveButtonPressed,
+                    ),
                   ],
                 ),
-                SizedBox(
-                  height: 36,
-                ),
-                CustomButton(
-                  text: "Save",
-                  backgroundColor: AppColors.primaryColor,
-                  fontSize: AppFontSizes.medium,
-                  width: screenWidth * 0.7,
-                  height: screenHeight * 0.06,
-                  onPressed: controller.onSaveButtonPressed,
-                ),
-              ],
+              ),
             ),
           ),
         ));

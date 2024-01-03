@@ -11,7 +11,7 @@ import '../widgets/advanced_custom_button.dart';
 class TargetStatus extends StatelessWidget {
   final TargetStatusController controller;
 
-  TargetStatus({required RxList<Salesman> salesmen}) : controller = Get.put(TargetStatusController(salesmen));
+  TargetStatus({required Salesman salesmen}) : controller = Get.put(TargetStatusController(salesmen));
 
   @override
   Widget build(BuildContext context) {
@@ -67,20 +67,6 @@ class TargetStatus extends StatelessWidget {
                   height: 20.0,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: AppColors.lightGreyColor,
-                  ),
-                ),
-                SizedBox(width: 8.0),
-                Text("To Do"),
-              ],
-            ),
-            Row(
-              children: [
-                Container(
-                  width: 20.0,
-                  height: 20.0,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
                     color: Colors.grey, // Use the color from circleColors
                   ),
                 ),
@@ -128,9 +114,24 @@ class TargetStatus extends StatelessWidget {
                 height: 6,
               ),
               AdvancedCustomButton(
-                text: 'Completed',
-                subtitle: "${controller.current} tasks now . ${controller.target} tasks completed",
-                onPressed: controller.onButtonPressed,
+                text: 'Done Leads',
+                subtitle: "${controller.salesmen.current} completed leads",
+                onPressed: controller.onLeadsPressed,
+                borderColor: Colors.green,
+                endingWidget: Icon(Icons.more_horiz_rounded),
+                buttonColor: Colors.white,
+                width: screenWidth * 0.9,
+                height: screenHeight * 0.1,
+                textSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+              SizedBox(
+                height: 12,
+              ),
+              AdvancedCustomButton(
+                text: 'New Leads',
+                subtitle: "${controller.completed} new leads",
+                onPressed: controller.onLeadsPressed,
                 endingWidget: Icon(Icons.more_horiz_rounded),
                 borderColor: AppColors.primaryColor,
                 buttonColor: Colors.white,
@@ -143,25 +144,10 @@ class TargetStatus extends StatelessWidget {
                 height: 12,
               ),
               AdvancedCustomButton(
-                text: 'In Progress',
-                subtitle: "2 tasks now . 1 started",
-                onPressed: controller.onButtonPressed,
+                text: 'Lost Leads',
+                subtitle: "${controller.salesmen.current} lost leads",
+                onPressed: controller.onLeadsPressed,
                 borderColor: Colors.black54,
-                endingWidget: Icon(Icons.more_horiz_rounded),
-                buttonColor: Colors.white,
-                width: screenWidth * 0.9,
-                height: screenHeight * 0.1,
-                textSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-              SizedBox(
-                height: 12,
-              ),
-              AdvancedCustomButton(
-                text: 'To Do',
-                subtitle: "2 tasks now . 1 upcoming",
-                onPressed: controller.onButtonPressed,
-                borderColor: AppColors.lightGreyColor,
                 endingWidget: Icon(Icons.more_horiz_rounded),
                 buttonColor: Colors.white,
                 width: screenWidth * 0.9,

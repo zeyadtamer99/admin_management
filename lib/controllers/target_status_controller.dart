@@ -5,15 +5,20 @@ import 'package:admin_management/views/add_task_screen.dart';
 import '../models/salesmen.dart';
 
 class TargetStatusController extends GetxController {
-  RxList<Salesman> salesmen;
-  double current = 20.0;
-  double target = 22.0;
+  Salesman salesmen;
+
   ValueNotifier<double> valueNotifier = ValueNotifier(0);
   ValueNotifier<double> valueNotifier2 = ValueNotifier(0);
 
+  double completed=0.0;
+
+
   TargetStatusController(this.salesmen) {
-    valueNotifier.value = (current / target) * 100;
-    valueNotifier2.value = ((target - current) / target) * 100;
+    completed = double.parse(salesmen.target) - double.parse(salesmen.current);
+
+    valueNotifier.value = (double.parse(salesmen.current) / double.parse(salesmen.target)) * 100;
+    valueNotifier2.value = ((double.parse(salesmen.target) - double.parse(salesmen.current)) / double.parse(salesmen.target)) * 100;
+
   }
 
   void onAppBarLeadingPressed() {
@@ -24,5 +29,7 @@ class TargetStatusController extends GetxController {
     Get.to(AddTask());
   }
 
-  void onButtonPressed() {}
+  void onLeadsPressed() {
+
+  }
 }

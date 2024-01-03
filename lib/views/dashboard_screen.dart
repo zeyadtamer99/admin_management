@@ -16,15 +16,13 @@ class DashboardScreen extends StatelessWidget {
   List<_SalesData> generateRandomData() {
     return List<_SalesData>.generate(
       5,
-          (int index) => _SalesData('Month${index + 1}', random.nextInt(100).toDouble()),
+      (int index) => _SalesData(index + 1, random.nextInt(100).toDouble()),
     );
   }
-
 
   final DashboardController controller = Get.put(DashboardController());
   @override
   Widget build(BuildContext context) {
-
     List<_SalesData> data1 = generateRandomData();
     List<_SalesData> data2 = generateRandomData();
     double screenHeight = MediaQuery.of(context).size.height;
@@ -38,49 +36,76 @@ class DashboardScreen extends StatelessWidget {
           body: SingleChildScrollView(
             child: Column(children: [
               SizedBox(
-                height: 32,
+                height: 16,
               ),
-              SizedBox(
-                height: 250,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: SfCartesianChart(
-                        series: <SplineSeries<_SalesData, String>>[
-                          SplineSeries<_SalesData, String>(
-                            dataSource: data1,
-                            xValueMapper: (_SalesData sales, _) => sales.year,
-                            yValueMapper: (_SalesData sales, _) => sales.sales,
-                            splineType: SplineType.natural,
-                            name: 'Sales',
-                            markerSettings: MarkerSettings(isVisible: true),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: SfCartesianChart(
-                        series: <StackedLineSeries<_SalesData, String>>[
-                          StackedLineSeries<_SalesData, String>(
-                            dataSource: data1,
-                            xValueMapper: (_SalesData sales, _) => sales.year,
-                            yValueMapper: (_SalesData sales, _) => sales.sales,
-                            name: 'Sales1',
-                            markerSettings: MarkerSettings(isVisible: true),
-                          ),
-                          StackedLineSeries<_SalesData, String>(
-                            dataSource: data2,
-                            xValueMapper: (_SalesData sales, _) => sales.year,
-                            yValueMapper: (_SalesData sales, _) => sales.sales,
-                            name: 'Sales2',
-                            markerSettings: MarkerSettings(isVisible: true),
-                          ),
-                        ],
-                      ),
-                    ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                    height: 200,
+                    child: Row(
 
-                  ],
-                )
+                      children: [
+                        Flexible(
+                          flex: 1,
+                          child: Column(
+                            children: [
+                              Expanded(
+                                child: SfCartesianChart(
+                                  series: <SplineSeries<_SalesData, num>>[
+                                    SplineSeries<_SalesData, num>(
+                                      dataSource: data1,
+                                      xValueMapper: (_SalesData sales, _) =>
+                                          sales.year,
+                                      yValueMapper: (_SalesData sales, _) =>
+                                          sales.sales,
+                                      splineType: SplineType.natural,
+                                      name: 'Sales',
+                                      markerSettings:
+                                          MarkerSettings(isVisible: true),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Text("Total Income"),
+                            ],
+                          ),
+                        ),
+                        Flexible(
+                          flex: 1,
+                          child: Column(
+                            children: [
+                              Expanded(
+                                child: SfCartesianChart(
+                                  series: <StackedLineSeries<_SalesData, num>>[
+                                    StackedLineSeries<_SalesData, num>(
+                                      dataSource: data1,
+                                      xValueMapper: (_SalesData sales, _) =>
+                                          sales.year,
+                                      yValueMapper: (_SalesData sales, _) =>
+                                          sales.sales,
+                                      name: 'Sales1',
+                                      markerSettings:
+                                          MarkerSettings(isVisible: true),
+                                    ),
+                                    StackedLineSeries<_SalesData, num>(
+                                      dataSource: data2,
+                                      xValueMapper: (_SalesData sales, _) =>
+                                          sales.year,
+                                      yValueMapper: (_SalesData sales, _) =>
+                                          sales.sales,
+                                      name: 'Sales2',
+                                      markerSettings:
+                                          MarkerSettings(isVisible: true),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Text("Top 2 Salesman"),
+                            ],
+                          ),
+                        )
+                      ],
+                    )),
               ),
               SizedBox(
                 height: 16,
@@ -140,6 +165,6 @@ class DashboardScreen extends StatelessWidget {
 class _SalesData {
   _SalesData(this.year, this.sales);
 
-  final String year;
+  final num year;
   final double sales;
 }
