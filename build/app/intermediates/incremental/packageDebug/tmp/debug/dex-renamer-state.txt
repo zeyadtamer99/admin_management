@@ -1,4 +1,4 @@
-#Mon Jan 01 22:19:39 EET 2024
+#Wed Jan 03 13:19:50 EET 2024
 base.0=E\:\\Hassan Job Karam\\admin_management\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
