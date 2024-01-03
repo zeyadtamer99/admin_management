@@ -14,6 +14,7 @@ class CustomAnalyticsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Card(
       color: backgroundColor,
       shape: RoundedRectangleBorder(

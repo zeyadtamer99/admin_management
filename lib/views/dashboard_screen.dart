@@ -5,6 +5,7 @@ import 'package:admin_management/widgets/custom_analytics_card.dart';
 import 'package:admin_management/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 import '../controllers/dash_board_controller.dart';
@@ -12,22 +13,20 @@ import '../widgets/sales_man_card.dart';
 
 class DashboardScreen extends StatelessWidget {
   final random = Random();
-
   List<_SalesData> generateRandomData() {
     return List<_SalesData>.generate(
       5,
-      (int index) => _SalesData(
-        'Month ${index + 1}',
-        random.nextInt(100).toDouble(),
-      ),
+          (int index) => _SalesData('Month${index + 1}', random.nextInt(100).toDouble()),
     );
   }
+
 
   final DashboardController controller = Get.put(DashboardController());
   @override
   Widget build(BuildContext context) {
-    List<_SalesData> data = generateRandomData();
 
+    List<_SalesData> data1 = generateRandomData();
+    List<_SalesData> data2 = generateRandomData();
     double screenHeight = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
@@ -43,32 +42,45 @@ class DashboardScreen extends StatelessWidget {
               ),
               SizedBox(
                 height: 250,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return CustomAnalyticsCard(
-                      title: 'Analytics',
-                      child: SfSparkLineChart.custom(
-                        trackball: SparkChartTrackball(
-                            activationMode: SparkChartActivationMode.tap),
-                        marker: SparkChartMarker(
-                            borderColor: Colors.white,
-                            displayMode: SparkChartMarkerDisplayMode.all),
-                        labelDisplayMode: SparkChartLabelDisplayMode.all,
-                        xValueMapper: (int index) => data[index].year,
-                        yValueMapper: (int index) => data[index].sales,
-                        color: AppColors.primaryColor,
-                        dataCount: 5,
-                        axisLineColor: Colors.white,
-                        highPointColor: Colors.white,
-                        labelStyle:
-                            TextStyle(fontSize: 14, color: Colors.white),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: SfCartesianChart(
+                        series: <SplineSeries<_SalesData, String>>[
+                          SplineSeries<_SalesData, String>(
+                            dataSource: data1,
+                            xValueMapper: (_SalesData sales, _) => sales.year,
+                            yValueMapper: (_SalesData sales, _) => sales.sales,
+                            splineType: SplineType.natural,
+                            name: 'Sales',
+                            markerSettings: MarkerSettings(isVisible: true),
+                          ),
+                        ],
                       ),
-                      backgroundColor: Colors.black,
-                    );
-                  },
-                ),
+                    ),
+                    Expanded(
+                      child: SfCartesianChart(
+                        series: <StackedLineSeries<_SalesData, String>>[
+                          StackedLineSeries<_SalesData, String>(
+                            dataSource: data1,
+                            xValueMapper: (_SalesData sales, _) => sales.year,
+                            yValueMapper: (_SalesData sales, _) => sales.sales,
+                            name: 'Sales1',
+                            markerSettings: MarkerSettings(isVisible: true),
+                          ),
+                          StackedLineSeries<_SalesData, String>(
+                            dataSource: data2,
+                            xValueMapper: (_SalesData sales, _) => sales.year,
+                            yValueMapper: (_SalesData sales, _) => sales.sales,
+                            name: 'Sales2',
+                            markerSettings: MarkerSettings(isVisible: true),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                  ],
+                )
               ),
               SizedBox(
                 height: 16,
